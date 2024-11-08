@@ -1,7 +1,6 @@
 import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
 import { Cron, CronExpression } from "@nestjs/schedule";
-import { title } from "process";
 import { firstValueFrom } from "rxjs";
 
 @Injectable()
@@ -30,7 +29,7 @@ export class AppService {
     `;
 	}
 
-	@Cron("25 15 * * *")
+	@Cron(CronExpression.EVERY_DAY_AT_6PM)
 	async handleCron() {
 		try {
 			const webhook =
