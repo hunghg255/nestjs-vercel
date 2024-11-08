@@ -1,7 +1,13 @@
+import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
+import { Cron, CronExpression } from "@nestjs/schedule";
+import { title } from "process";
+import { firstValueFrom } from "rxjs";
 
 @Injectable()
 export class AppService {
+	constructor(private readonly httpService: HttpService) {}
+
 	getHello(): string {
 		return `<h1>Welcome to Agiletech Test</h1>
     <a href="/backend" target="_blank">Link Swagger</a>
@@ -22,5 +28,48 @@ export class AppService {
 
     <h1>Yêu cầu</h1>
     `;
+	}
+
+	@Cron("25 15 * * *")
+	async handleCron() {
+		try {
+			const webhook =
+				"https://discord.com/api/webhooks/1304358390671216661/MrukzHYVG2dASbd9M2xVlwda0l5u1MEXyV0rGapT0b8pIGTwd59Ty-gl8CnanhA9hS5g";
+
+			let embed: any = {};
+
+			embed.title = "Title";
+
+			embed.description = "Description";
+
+			embed.fields = [
+				{
+					name: "Repository",
+					value: `Repository`,
+					inline: true
+				},
+				{
+					name: "Ref",
+					value: "Ref",
+					inline: true
+				}
+			];
+
+			let discord_payload: any = {
+				embeds: [embed]
+			};
+
+			await firstValueFrom(
+				this.httpService.post(webhook, discord_payload)
+			);
+
+			console.log("Send message to discord");
+		} catch (error) {
+			console.log({
+				error: error.response.data
+			});
+
+			console.log("Error when send message to discord");
+		}
 	}
 }
