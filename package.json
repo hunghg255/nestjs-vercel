@@ -29,6 +29,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^4.1.1",
     "@nestjs/swagger": "^6.1.2",
+    "@nestjs/throttler": "^6.2.1",
     "axios": "^1.7.7",
     "class-validator": "^0.13.2",
     "helmet": "^6.0.0",

@@ -15,6 +15,7 @@ import { PostsService } from "./posts/posts.service";
 import { PostsModule } from "./posts/posts.module";
 import { ScheduleModule } from "@nestjs/schedule";
 import { HttpModule } from "@nestjs/axios";
+import { ThrottlerModule } from "@nestjs/throttler";
 
 @Module({
 	imports: [
@@ -30,6 +31,13 @@ import { HttpModule } from "@nestjs/axios";
 		}),
 		ScheduleModule.forRoot(),
 		ConfigModule.forRoot(),
+		ThrottlerModule.forRoot([
+			{
+				name: "long",
+				ttl: 60000,
+				limit: 100
+			}
+		]),
 		AuthModule,
 		GalleriesModule,
 		PostsModule
