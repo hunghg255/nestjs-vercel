@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return `<h1>Welcome to Agiletech Test</h1>
-    <a href="/api" target="_blank">Link Swagger</a>
+	getHello(): string {
+		return `<h1>Welcome to Agiletech Test</h1>
+    <a href="/backend" target="_blank">Link Swagger</a>
     <code style="font-size:16px">
       <h4>POST: /auth/login: Đăng nhập có accessToken, refreshToken (accessToken hết hạn sau 1 phút, refreshToken hết hạn sau 1 ngày)</h4>
       <h4>POST: /auth/refreshToken: Refresh token khi accessToken hết hạn</h4>
@@ -22,5 +22,5 @@ export class AppService {
 
     <h1>Yêu cầu</h1>
     `;
-  }
+	}
 }
