@@ -1,7 +1,7 @@
 import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
-import { Cron, CronExpression } from "@nestjs/schedule";
-import { firstValueFrom } from "rxjs";
+// import { Cron, CronExpression } from "@nestjs/schedule";
+// import { firstValueFrom } from "rxjs";
 
 @Injectable()
 export class AppService {
@@ -29,46 +29,46 @@ export class AppService {
     `;
 	}
 
-	@Cron(CronExpression.EVERY_DAY_AT_6PM)
-	async handleCron() {
-		try {
-			const webhook =
-				"https://discord.com/api/webhooks/1304358390671216661/MrukzHYVG2dASbd9M2xVlwda0l5u1MEXyV0rGapT0b8pIGTwd59Ty-gl8CnanhA9hS5g";
+	// @Cron(CronExpression.EVERY_DAY_AT_6PM)
+	// async handleCron() {
+	// 	try {
+	// 		const webhook =
+	// 			"https://discord.com/api/webhooks/1304358390671216661/MrukzHYVG2dASbd9M2xVlwda0l5u1MEXyV0rGapT0b8pIGTwd59Ty-gl8CnanhA9hS5g";
 
-			let embed: any = {};
+	// 		let embed: any = {};
 
-			embed.title = "Title";
+	// 		embed.title = "Title";
 
-			embed.description = "Description";
+	// 		embed.description = "Description";
 
-			embed.fields = [
-				{
-					name: "Repository",
-					value: `Repository`,
-					inline: true
-				},
-				{
-					name: "Ref",
-					value: "Ref",
-					inline: true
-				}
-			];
+	// 		embed.fields = [
+	// 			{
+	// 				name: "Repository",
+	// 				value: `Repository`,
+	// 				inline: true
+	// 			},
+	// 			{
+	// 				name: "Ref",
+	// 				value: "Ref",
+	// 				inline: true
+	// 			}
+	// 		];
 
-			let discord_payload: any = {
-				embeds: [embed]
-			};
+	// 		let discord_payload: any = {
+	// 			embeds: [embed]
+	// 		};
 
-			await firstValueFrom(
-				this.httpService.post(webhook, discord_payload)
-			);
+	// 		await firstValueFrom(
+	// 			this.httpService.post(webhook, discord_payload)
+	// 		);
 
-			console.log("Send message to discord");
-		} catch (error) {
-			console.log({
-				error: error.response.data
-			});
+	// 		console.log("Send message to discord");
+	// 	} catch (error) {
+	// 		console.log({
+	// 			error: error.response.data
+	// 		});
 
-			console.log("Error when send message to discord");
-		}
-	}
+	// 		console.log("Error when send message to discord");
+	// 	}
+	// }
 }
