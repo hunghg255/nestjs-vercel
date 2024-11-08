@@ -17,11 +17,19 @@ async function bootstrap() {
 
 	const document = SwaggerModule.createDocument(app, config);
 
-	SwaggerModule.setup("backend", app, document, {
+	const swaggerPath = "/backend";
+	const swaggerCDN = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.7.2";
+	SwaggerModule.setup(swaggerPath, app, document, {
+		customCssUrl: [`${swaggerCDN}/swagger-ui.css`],
+		customJs: [
+			`${swaggerCDN}/swagger-ui-bundle.js`,
+			`${swaggerCDN}/swagger-ui-standalone-preset.js`
+		],
 		swaggerOptions: {
 			displayOperationId: true
 		}
 	});
+
 	const PORT = process.env.PORT || 3000;
 	await app.listen(PORT);
 	console.log(`Application is running on: ${await app.getUrl()}`);
